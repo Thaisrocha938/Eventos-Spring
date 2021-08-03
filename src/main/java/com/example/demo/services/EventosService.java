@@ -17,6 +17,7 @@ public class EventosService {
     public List<Eventos> listarTodosEventos() {
         return eventosRepository.findAll();
     }
+
     public Optional<Eventos> listarEventoUnico(long id) {
         return eventosRepository.findById(id);
     }
