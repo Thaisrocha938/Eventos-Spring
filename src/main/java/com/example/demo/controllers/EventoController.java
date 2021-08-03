@@ -15,27 +15,27 @@ class EventosController {
     EventosService eventosService;
 
     @GetMapping("/eventos")
-    public List<Eventos> visitEventos(){
+    public List<Eventos> viewEventos(){
         return eventosService.listarTodosEventos();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/evento/{id}")
     public Optional<Eventos> viewEvento(@PathVariable long id){
         return eventosService.listarEventoUnico(id);
     }
 
-    @PostMapping("/evento")
+    @PostMapping("/eventoSalve")
     public Eventos saveEvento(@RequestBody Eventos eventos){
         return eventosService.salvarEvento(eventos);
     }
 
     @DeleteMapping("/evento")
-    public void deletaEvento(@RequestBody Eventos eventos){
+    public void deleteEvento(@RequestBody Eventos eventos){
        eventosService.deletaEvento(eventos);
     }
 
     @PutMapping("/evento")
-    public Eventos uploadEvento(@RequestBody Eventos eventos){
+    public Eventos uploadEvento(@RequestBody Eventos eventos) {
         return eventosService.atualizarEvento(eventos);
     }
 }
