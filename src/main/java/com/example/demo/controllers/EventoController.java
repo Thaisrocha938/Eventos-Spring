@@ -24,17 +24,17 @@ class EventosController {
         return eventosService.listarEventoUnico(id);
     }
 
-    @PostMapping("/eventoSalve")
+    @PostMapping("/criar_evento")
     public Eventos saveEvento(@RequestBody Eventos eventos){
         return eventosService.salvarEvento(eventos);
     }
 
-    @DeleteMapping("/evento")
+    @DeleteMapping("/deletar_evento")
     public void deleteEvento(@RequestBody Eventos eventos){
        eventosService.deletaEvento(eventos);
     }
 
-    @PutMapping("/evento")
+    @PutMapping("/alterar_evento")
     public Eventos uploadEvento(@RequestBody Eventos eventos) {
         return eventosService.atualizarEvento(eventos);
     }

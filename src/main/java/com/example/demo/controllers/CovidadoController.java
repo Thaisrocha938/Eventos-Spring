@@ -1,34 +1,40 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Convidados;
-import com.example.demo.repositories.ConvidadosRepository;
+import com.example.demo.services.ConvidadosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/agenda")
 public class CovidadoController {
 
     @Autowired
-    ConvidadosRepository convidadosRepository;
+    ConvidadosService convidadosService;
 
-   /* @GetMapping("/{id}/convidados")
-    public List<Convidados> listarConvidadosEventoUnico(@PathVariable long id){
-        return convidadosRepository.findAllConvidadosByEventoId(id);
-    }*/
     @GetMapping("/convidados")
-    public List<Convidados> listarConvidadosEventoUnico(){
-        return convidadosRepository.findAll();
+    public List<Convidados> viewConvidados(){
+        return convidadosService.listarConvidados();
     }
+    @GetMapping("/convidado/{id}")
+    public Optional<Convidados> viewConvidado(@PathVariable long id){
+        return convidadosService.listarUnicoConvidado(id);
+    }
+
     @PostMapping("/convidado")
-    public Convidados savarConvidado(@RequestBody Convidados convidado){
-        return convidadosRepository.save(convidado);
+    public Convidados saveConvidado(@RequestBody Convidados convidado){
+        return convidadosService.salvarConvidado(convidado);
+    }
+    @DeleteMapping("/convidado")
+    public void deleteConvidado(@RequestBody Convidados convidado){
+        convidadosService.excluirConvidado(convidado);
     }
     @PutMapping("/convidado")
-    public Convidados alterarConvidado(@RequestBody Convidados convidado){
-        return convidadosRepository.save(convidado);
+    public Convidados uploadConvidado(@RequestBody Convidados convidado){
+        return convidadosService.alterarConvidado(convidado);
     }
 
 }
